@@ -9,3 +9,6 @@ venv
 
 # Ignore emacs backup files
 *~
+
+# Ignore this file
+.gitignore
