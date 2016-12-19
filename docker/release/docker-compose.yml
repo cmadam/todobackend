@@ -23,7 +23,7 @@ test:
   links:
     - nginx
   environment:
-    URL: http://nginx:8000/todos
+    URL: http://nginx:8888/todos
     JUNIT_REPORT_PATH: /reports/acceptance.xml
     JUNIT_REPORT_STACK: 1
   command: --reporter mocha-jenkins-reporter
@@ -34,7 +34,7 @@ nginx:
   links:
     - app
   ports:
-    - "8000:8000"
+    - "8888:8888"
   volumes_from:
     - webroot
 
