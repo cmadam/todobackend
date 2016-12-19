@@ -7,8 +7,16 @@ venv
 # Ignore SQLite database files
 *.sqlite3
 
-# Ignore emacs backup files
-*~
+# Ignore test artifacts
+src/.coverage
+src/*.xml
 
-# Ignore this file
-.gitignore
+# Ignore eggs
+src/*egg-info
+
+# Ignore build and test artifacts
+target
+reports
+
+# Ignore backup files
+*~

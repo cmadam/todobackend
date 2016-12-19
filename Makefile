@@ -95,7 +95,7 @@ clean:
 
 tag: 
 	${INFO} "Tagging release image with tags $(TAG_ARGS)..."
-	@ $(foreach tag,$(TAG_ARGS), docker tag -f $(IMAGE_ID) $(DOCKER_REGISTRY)/$(ORG_NAME)/$(REPO_NAME):$(tag);)
+	@ $(foreach tag,$(TAG_ARGS), docker tag $(IMAGE_ID) $(DOCKER_REGISTRY)/$(ORG_NAME)/$(REPO_NAME):$(tag);)
 	${INFO} "Tagging complete"
 
 buildtag:
@@ -117,7 +117,7 @@ publish:
 	${INFO} "Publishing release image $(IMAGE_ID) to $(DOCKER_REGISTRY)/$(ORG_NAME)/$(REPO_NAME)..."
 	@ $(foreach tag,$(shell echo $(REPO_EXPR)), docker push $(tag);)
 	${INFO} "Publish complete"
-	
+
 # Cosmetics
 YELLOW := "\e[1;33m"
 NC := "\e[0m"
@@ -148,7 +148,7 @@ REPO_EXPR := $$(docker inspect -f '{{range .RepoTags}}{{.}} {{end}}' $(IMAGE_ID)
 ifeq (buildtag,$(firstword $(MAKECMDGOALS)))
 	BUILDTAG_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
   ifeq ($(BUILDTAG_ARGS),)
-  	$(error You must specify a tag)
+	$(error You must specify a tag)
   endif
   $(eval $(BUILDTAG_ARGS):;@:)
 endif
